@@ -17,7 +17,6 @@ dotfiles_install_component .vim $HOME/.vim
 dotfiles_install_component .vimrc $HOME/.vimrc
 
 # Build YouCompleteMe
-
 if [[ -z $(find "${BUNDLE}/YouCompleteMe/third_party/ycmd" -name "libclang.*") ]]; then
     print_info COMPONENT "Building YouCompleteMe.vim"
     python2 $BUNDLE/YouCompleteMe/install.py --clang-completer
