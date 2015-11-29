@@ -25,7 +25,7 @@ Also targets can have different components, which are the configuration entities
 
 Using the `install.sh` file you can specify custom commands you need to bootstrap a target and its components (Install your favourite shell, update your system, etc), but also you have to take care of the location of that components.
 
-Since configuration files live in `.dotfiles` target directories, you have to *install* these files into your system. That is, to create symbolic links from the expected script/directory path (Say `$HOME/.vimrc`) to their path inside `.dotfiles.` ($HOME/.dotfiles/editors/vim/.vimrc` for example).
+Since configuration files live in `.dotfiles` target directories, you have to *install* these files into your system. That is, to create symbolic links from the expected script/directory path (Say `$HOME/.vimrc`) to their path inside `.dotfiles.` (`$HOME/.dotfiles/editors/vim/.vimrc` for example).
 
 Don't worry, hopefully we have a bunch of commands to automate this:
 
