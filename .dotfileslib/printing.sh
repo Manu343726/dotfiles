@@ -29,6 +29,40 @@ else
     WHITE=""
 fi
 
+source $DOTFILES_LIB/verbosity.sh
+
+colored_echo()
+{
+    source $OPTPARSE_LIB/optparse.bash
+    optparse.define short=m long=message desc="Message to print" variable=message
+    optparse.define short=h long=header desc="Header of the message" variable=header
+    optparse.define short=c long=color desc="Color of the header" variable=color default=""
+    optparse.define short=b long=bold desc="Header is displayed with bold font." variable=bold default=""
+    optparse.define short=C long=message-color desc="Color of the message" variable=message_color default=""
+    optparse.define short=B long=message-bold desc="Message is printed with bold font. If empty takes same value as bold parameter" variable=message_bold default=""
+    source $( optparse.build )
+
+    # optparse cannot handle color codes as default values
+    if [ -z "$color" ]; then
+        color=$NORMAL
+    fi
+
+    if [ -z "$bold" ]; then
+        bold=$NORMAL
+    fi
+
+    if [ -z "$message_color" ]; then
+        message_color=$NORMAL
+    fi
+
+    if [ -z "$message_bold" ]; then
+        message_bold=$bold
+    fi
+
+    echo ${color}${bold}${header}${message_color}${message_bold}${message}${NORMAL}
+}
+
+
 print_message()
 {
     local level=$1
@@ -67,8 +101,9 @@ print_message()
         header="${header}NOTE: "
     fi
 
-    [[ "$level" == "TARGET"  ]] && echo ""
-    echo ${color}${bold}${header}${NORMAL}${bold}${message}${NORMAL}
+    if [[ $(verbose_policy --level $level) ]]; then
+        colored_echo -c $color -h "$header" -m "$message" -b $bold
+    fi
 }
 
 print_info()
