@@ -1,0 +1,3 @@
+[submodule ".dotfileslib/3rdParty/optparse"]
+	path = .dotfileslib/3rdParty/optparse
+	url = https://github.com/nk412/optparse.git
