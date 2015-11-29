@@ -31,18 +31,18 @@ fi
 
 source $DOTFILES_LIB/verbosity.sh
 
+export DOTFILES_ECHO_NO_NEWLINE=false
+
 colored_echo()
 {
-    source $OPTPARSE_LIB/optparse.bash
-    optparse.define short=m long=message desc="Message to print" variable=message
-    optparse.define short=h long=header desc="Header of the message" variable=header
-    optparse.define short=c long=color desc="Color of the header" variable=color default=""
-    optparse.define short=b long=bold desc="Header is displayed with bold font." variable=bold default=""
-    optparse.define short=C long=message-color desc="Color of the message" variable=message_color default=""
-    optparse.define short=B long=message-bold desc="Message is printed with bold font. If empty takes same value as bold parameter" variable=message_bold default=""
-    source $( optparse.build )
+    local color=$1
+    local bold=$2
+    local header="$3"
+    local message_color=$4
+    local message_bold=$5
+    local message="$6"
 
-    # optparse cannot handle color codes as default values
+
     if [ -z "$color" ]; then
         color=$NORMAL
     fi
@@ -59,7 +59,13 @@ colored_echo()
         message_bold=$bold
     fi
 
-    echo ${color}${bold}${header}${message_color}${message_bold}${message}${NORMAL}
+    output="${color}${bold}${header}${message_color}${message_bold}${message}${NORMAL}"
+    
+    if $DOTFILES_ECHO_NO_NEWLINE; then
+        echo -n "$output"
+    else
+        echo "$output"
+    fi
 }
 
 
@@ -101,8 +107,8 @@ print_message()
         header="${header}NOTE: "
     fi
 
-    if [[ $(verbose_policy --level $level) ]]; then
-        colored_echo -c $color -h "$header" -m "$message" -b $bold
+    if verbose_policy $level; then    
+        colored_echo $color $bold "$header" $NORMAL  $bold "$message"
     fi
 }
 
@@ -124,4 +130,25 @@ print_warning()
 print_error()
 {
     print_message "$1" "ERROR" "$2"
+}
+
+confirm () {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure? [y/N]} " response
+    case $response in
+        [yY][eE][sS]|[yY]) 
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}
+
+confirm_colored()
+{
+    export DOTFILES_ECHO_NO_NEWLINE=true
+    print_info "$1" "$2"
+    export DOTFILES_ECHO_NO_NEWLINE=false
+    confirm " [y/N]: "
 }

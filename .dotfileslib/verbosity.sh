@@ -7,20 +7,17 @@ export DOTFILES_VERBOSE_DEFAULT=$DOTFILES_VERBOSE_DISABLED
 
 verbose_policy()
 {
-    source $OPTPARSE_LIB/optparse.bash
-    optparse.define short=l long=message-level desc="Message source level (TARGET, COMPONENT, STEP)" variable=level
-    source $(optparse.build)
-
-    local declare -A policy=(
-        ["${DOTFILES_VERBOSE_DISABLED}:TARGET"]=1
+    declare -A policy=(
+        ["${DOTFILES_VERBOSE_DISABLED}:TARGET"]=0
         ["${DOTFILES_VERBOSE_DISABLED}:COMPONENT"]=1
         ["${DOTFILES_VERBOSE_DISABLED}:STEP"]=1
-        ["${DOTFILES_VERBOSE_LOW}:TARGET"]=1
-        ["${DOTFILES_VERBOSE_LOW}:COMPONENT"]=1
+        ["${DOTFILES_VERBOSE_LOW}:TARGET"]=0
+        ["${DOTFILES_VERBOSE_LOW}:COMPONENT"]=0
         ["${DOTFILES_VERBOSE_LOW}:STEP"]=1
-        ["${DOTFILES_VERBOSE_HIGH}:TARGET"]=1
-        ["${DOTFILES_VERBOSE_HIGH}:COMPONENT"]=1
-        ["${DOTFILES_VERBOSE_HIGH}:STEP"]=1)
+        ["${DOTFILES_VERBOSE_HIGH}:TARGET"]=0
+        ["${DOTFILES_VERBOSE_HIGH}:COMPONENT"]=0
+        ["${DOTFILES_VERBOSE_HIGH}:STEP"]=0
+    )
 
-    echo "$policy[${DOTFILES_VERBOSE_LEVEL}:$level]"
+    return "${policy[${DOTFILES_VERBOSE_LEVEL}:$1]}"
 }

@@ -70,6 +70,10 @@ dotfiles_install_component()
     local dest="$2"
     local dest_backup=${dest}.pre-dotfiles
 
+    if $DOTFILES_COMPONENT_CONFIRM; then
+        confirm_colored COMPONENT "Proceed installing component '$1' as '$2'?" || return 0
+    fi
+
     print_info COMPONENT "Installing component '$1' as '$2'"
 
     if [ ! -e "${component}" -a ! -L "${component}" ]; then
@@ -100,6 +104,10 @@ dotfiles_install_target()
 {
     export DOTFILES_CURRENT_SOURCE_DIR="${DOTFILES_SRC_DIR}/$1"
 
+    if $DOTFILES_TARGET_CONFIRM; then
+        confirm_colored TARGET "Proceed installing target '$1'?" || return 0
+    fi
+    
     if [ ! -d "$DOTFILES_CURRENT_SOURCE_DIR" ]; then
         print_error TARGET "Target '$1' does not exist. Skipping..."
     else
