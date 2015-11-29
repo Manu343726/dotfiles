@@ -36,6 +36,10 @@ find_package()
     local distro="$2"
     local regex="s/${generic_name} ${distro} *//p"
 
+    if [ ! -f "$DOTFILES_PACKAGE_DATABASE" ]; then
+        return $DOTFILES_ERROR_NO_DATABASE_FILE
+    fi
+
     local distro_specific_name=$(cat $DOTFILES_PACKAGE_DATABASE | sed -rn "$regex")
 
     if [ -n "$distro_specific_name" ]; then
