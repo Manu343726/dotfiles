@@ -6,15 +6,18 @@ BUNDLE="${DOTVIM}/bundle"
 # Create .vim folder if needed
 [ -d "$DOTVIM" ] && mkdir -p $DOTVIM
 
+# Install vim with python support
+install_package vim
+
+# Install config
+dotfiles_install_component .vim $HOME/.vim
+dotfiles_install_component .vimrc $HOME/.vimrc
+
 # Install vim vundle
 dotfiles_install_remote_component GITHUB VundleVim/Vundle.vim ".vim/bundle/Vundle.vim"
 
 # Install vim plugins
 vim +PluginInstall +qall
-
-# Install config
-dotfiles_install_component .vim $HOME/.vim
-dotfiles_install_component .vimrc $HOME/.vimrc
 
 # Build YouCompleteMe
 if [[ -z $(find "${BUNDLE}/YouCompleteMe/third_party/ycmd" -name "libclang.*") ]]; then

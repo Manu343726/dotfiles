@@ -107,7 +107,7 @@ print_message()
         header="${header}NOTE: "
     fi
 
-    if verbose_policy $level; then    
+    if verbose_policy $level || [ "${category}" == "REQUEST" ]; then    
         colored_echo $color $bold "$header" $NORMAL  $bold "$message"
     fi
 }
@@ -115,6 +115,11 @@ print_message()
 print_info()
 {
     print_message "$1" "INFO" "$2"
+}
+
+print_request()
+{
+    print_message "$1" "REQUEST" "$2"
 }
 
 print_note()
@@ -148,7 +153,7 @@ confirm () {
 confirm_colored()
 {
     export DOTFILES_ECHO_NO_NEWLINE=true
-    print_info "$1" "$2"
+    print_request "$1" "$2"
     export DOTFILES_ECHO_NO_NEWLINE=false
     confirm " [y/N]: "
 }

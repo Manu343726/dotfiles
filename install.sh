@@ -1,6 +1,7 @@
 #!/bin/bash
 source setup.sh
 source $DOTFILES_LIB/commands.sh
+source $DOTFILES_LIB/package-management.sh
 
 dotfiles_install()
 {
