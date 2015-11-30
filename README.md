@@ -8,7 +8,7 @@ My personal dotfiles repository
 
 Just run `install.sh`, it takes care of everything!
 
-    sh -c "$(curl -fsSL https://raw.github.com/Manu343726/dotfiles/master/install.sh)"
+    bash -c "$(curl -fsSL https://raw.github.com/Manu343726/dotfiles/master/install.sh)" --noconfirm
 
 ## Features
  
