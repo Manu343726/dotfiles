@@ -1,17 +1,6 @@
 #!/bin/sh
 
-guess_distro()
-{
-    if which pacman > /dev/null; then
-        echo arch
-        return 0
-    elif which apt-get > dev/null; then
-        echo debian
-        return 0
-    else
-        return 1
-    fi
-}
+source $DOTFILES_LIB/guess-distro.sh
 
 translate_packages()
 {
@@ -24,7 +13,7 @@ translate_packages()
 
         if [ -z "$specific_package" ]; then
             if confirm_colored COMPONENT "No package is registered in this distro with name '${generic_name}'. Register now?"; then
-                read -r -p "Enter the specific package name of '${generic_name}' in $(guess_distro): " specific_package
+                read -r -p "Enter the specific package name of '${generic_name}' in ${DOTFILES_PLATFORM}: " specific_package
                 $DOTFILES_LIB/package-database.sh register-package --generic-name ${generic_name} --name $specific_package
             else
                 print_error COMPONENT "Could not translate package name '${generic_name}'" 
@@ -41,12 +30,20 @@ translate_packages()
     eval $variable="$specific_packages"
 }
 
-if which pacman > /dev/null; then
-    export DOTFILES_PLATFORM="arch"
-    source $DOTFILES_LIB/package-management/arch.sh
-elif which apt-get > /dev/null; then
-    export DOTFILES_PLATFORM="debian"
-    source $DOTFILES_LIB/package-management/debian.sh
-else
-    print_error STEP "[Package Management] Unsupported platform"
+export DOTFILES_PLATFORM=$(guess_distro)
+export DOTFILES_PACKAGE_MANAGER=$DOTFILES_LIB/package-management/${DOTFILES_PLATFORM}.sh
+
+if [ -z "$DOTFILES_PLATFORM" ]; then
+    print_error TARGET "[Package management] Unknown platform"
+    exit 1
 fi
+
+if [ ! -f "$DOTFILES_PACKAGE_MANAGER" ]; then
+    print_error TARGET "[Package management] No package manager file found. Expected ${DOTFILES_PACKAGE_MANAGER}"
+    exit 2
+fi
+
+source ${DOTFILES_LIB}/package-management/${DOTFILES_PLATFORM}.sh
+
+alias dotfiles_install_package='install_package'
+alias dotfiles_update_system='update_system'

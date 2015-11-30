@@ -7,7 +7,7 @@ BUNDLE="${DOTVIM}/bundle"
 [ -d "$DOTVIM" ] && mkdir -p $DOTVIM
 
 # Install vim with python support
-install_package vim
+dotfiles_install_package vim
 
 # Install config
 dotfiles_install_component .vim $HOME/.vim
