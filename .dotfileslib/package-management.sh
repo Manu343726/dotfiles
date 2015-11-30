@@ -45,5 +45,12 @@ fi
 
 source ${DOTFILES_LIB}/package-management/${DOTFILES_PLATFORM}.sh
 
-alias dotfiles_install_package='install_package'
-alias dotfiles_update_system='update_system'
+dotfiles_install_package()
+{
+    install_package $@
+}
+
+dotfiles_update_system()
+{
+    update_system $@
+}
