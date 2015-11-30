@@ -7,7 +7,13 @@ export OPTPARSE_LIB=$DOTFILES_LIB/3rdParty/optparse
 
 if [ ! -d "$DOTFILES_SRC_DIR" ]; then
     git clone $DOTFILES_URL $DOTFILES_SRC_DIR
-    pushd $DOTFILES_SRC_DIR && git submodule update --init && popd
+fi
+
+if [ ! -d "$OPTPARSE_LIB" ]; then
+    current=$(pwd)
+    cd $DOTFILES_SRC_DIR
+    git submodule update --init
+    cd $current
 fi
 
 source $DOTFILES_LIB/verbosity.sh
