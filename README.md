@@ -6,7 +6,7 @@ My personal dotfiles repository
 
 ## Install
 
-Just run `install.sh`, it takes care of everything!
+Just run `install.sh`, it cares of everything!
 
     bash -c "$(curl -fsSL https://raw.github.com/Manu343726/dotfiles/master/install.sh)" --noconfirm
 
@@ -14,7 +14,7 @@ Just run `install.sh`, it takes care of everything!
  
  - No external dependencies. Just bash and git
  - Portable package management
- - Isolated configuration everything-in-one-place directory
+ - Everything-in-one-place configuration directory
  - Version Control friendly
 
 ## Philosophy
@@ -25,12 +25,12 @@ To make version control of configuration simple and painless, all configuration 
 
 ### Targets and components
 
-Linux means Do It On Your Own. Terminal colorschemes, text editors, shells, keyboard bindings... You are able to customize **everything**, but, as soon as you are comfortable with your current setup, you have to work in another computer and start again!
-Think of each setup menctioned above: The terminal setup, text editor configuration, etc. We can call them ***configuration targets*** or just "*targets"*. The different subsystems where you have a preferred configuration.  
-For each target there could be multiple things to configure. Think about vim: Vim itself could be one of our targets, but we have to manage the `.vimrc` file, the `.vim` folder with colorschemes and plugins, etc. Even the vim program itself! That is, the vim configuration target is made up of multiple ***components***.
+Linux means Do It Your Way. Terminal colorschemes, text editors, shells, keyboard bindings... You are able to customize **everything**, but, as soon as you are comfortable with your current setup, you have to work in another computer and start again!  
+Think of each setup menctioned above: The terminal setup, text editor configuration, etc. We can call them ***configuration targets*** or just "*targets"*. All the different subsystems where you have a preferred configuration.  
+
+For each target, there could be multiple things to configure. Think about vim: Vim itself could be one of our targets, but we have to manage the `.vimrc` file, the `.vim` folder with colorschemes and plugins, etc. Even the vim program itself! That is, the vim configuration target is made up of multiple ***components***.
 
     vim:
-
      - .vimrc file
      - .vim/ directory
      - vim program
@@ -67,7 +67,7 @@ Since dotfiles requires a lot of bash black magic under the hood, all implementa
 
 ### Package management
 
-One of the main goals of dotfails is to make bootstrapping of a new machine painless, regardless is an Ubuntu box, Arch, Fedora, etc. In that way, dotfiles wraps package management with its own commands to install packages in a portable way
+One of the main goals of dotfiles is to make bootstrapping of a new machine painless, regardless is an Ubuntu, Arch, Fedora, etc. In that way, dotfiles wraps package management with its own commands to install packages in a portable way.
 
 #### Package database
 
