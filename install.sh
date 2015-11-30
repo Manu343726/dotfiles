@@ -9,11 +9,13 @@ if [ ! -d "$DOTFILES_SRC_DIR" ]; then
     git clone $DOTFILES_URL $DOTFILES_SRC_DIR
 fi
 
-if [ ! -d "$OPTPARSE_LIB" ]; then
+if [ ! -d "$OPTPARSE_LIB" -o "$(ls -A $OPTPARSE_LIB 2> /dev/null)" == "" ]; then
     current=$(pwd)
     cd $DOTFILES_SRC_DIR
     git submodule update --init
     cd $current
+else
+    ls -l $OPTPARSE_LIB
 fi
 
 source $DOTFILES_LIB/verbosity.sh
