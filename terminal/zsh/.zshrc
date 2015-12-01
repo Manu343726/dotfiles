@@ -54,7 +54,8 @@ ZSH_THEME="bira"
 plugins=(git fbterm tmux)
 
 # User configuration
-
+# Enable 256 colors
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 export PATH="$PATH:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 # export MANPATH="/usr/local/man:$MANPATH"
 
