@@ -86,7 +86,9 @@ dotfiles_install_component()
         print_warning STEP "Component $dest will be overwritten. Saved as ${dest_backup}"
 
         if [ -e "${dest_backup}" -o -L "${dest_backup}" ]; then
-            rm $dest_backup -rfv
+            previous_backup=${dest_backup}.old.$(date "+%Y-%m-%d.%H:%M:%S")            
+            print_warning STEP "Detected previous backup file/folder at '${dest_backup}'. Saved as '${previous_backup}'"
+            mv $dest_backup $previous_backup
         fi
 
         if [ -h "${dest}" ]; then
