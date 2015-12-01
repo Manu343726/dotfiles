@@ -86,7 +86,7 @@ dotfiles_install_component()
         print_warning STEP "Component $dest will be overwritten. Saved as ${dest_backup}"
 
         if [ -e "${dest_backup}" -o -L "${dest_backup}" ]; then
-            rm $dest_backup
+            rm $dest_backup -rfv
         fi
 
         if [ -h "${dest}" ]; then
