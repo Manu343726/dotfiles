@@ -14,14 +14,13 @@ if [ ! -d "$OPTPARSE_LIB" -o "$(ls -A $OPTPARSE_LIB 2> /dev/null)" == "" ]; then
     cd $DOTFILES_SRC_DIR
     git submodule update --init
     cd $current
-else
-    ls -l $OPTPARSE_LIB
 fi
 
 source $DOTFILES_LIB/verbosity.sh
 source $OPTPARSE_LIB/optparse.bash
 
 # Install options
+optparse.define short=u long=update desc="Update repo before installing" variable=update default=false value=true
 optparse.define short=v long=verbosity desc="verbose output level (Disabled=0, Low=1, High=2)" variable=verbosity default=$DOTFILES_VERBOSE_DEFAULT
 optparse.define short=a long=target-confirm desc="Asks before installing a target, so you can select which targets to install while running" variable=target_confirm value=true default=false
 optparse.define short=o long=component-confirm desc="Same as 'target-confirm', but for components. Implies low verbosity" variable=component_confirm value=true default=false
@@ -33,6 +32,13 @@ if $component_confirm && [ "$verbosity" == "$DOTFILES_VERBOSE_DISABLED" ]; then
     echo NOTE: Verbosity raised to level ${DOTFILES_VERBOSE_LOW} by --component-confirm flag
 
     verbosity=$DOTFILES_VERBOSE_LOW
+fi
+
+if $update; then
+   current=$(pwd)
+   git pull
+   git submodule foreach git pull
+   cd $current
 fi
 
 export DOTFILES_VERBOSE_LEVEL=$verbosity

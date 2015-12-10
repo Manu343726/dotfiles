@@ -1,4 +1,5 @@
-zsh arch zsh
 vim arch vim
 zsh debian zsh
 vim debian vim
+cmake arch cmake
+zsh arch zsh
