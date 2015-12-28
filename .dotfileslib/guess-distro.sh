@@ -8,6 +8,9 @@ guess_distro()
     elif which apt-get > /dev/null; then
         echo debian
         return 0
+    elif which apt-cyg > /dev/null; then
+	echo cygwin
+        return 0
     else
         return 1
     fi

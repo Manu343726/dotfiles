@@ -3,3 +3,6 @@ zsh debian zsh
 vim debian vim
 cmake arch cmake
 zsh arch zsh
+zsh cygwin zsh
+vim cygwin vim
+cmake cygwin cmake

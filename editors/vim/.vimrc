@@ -178,7 +178,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -190,4 +189,3 @@ let g:nerdtree_tabs_open_on_console_startup=1
 " Syntax highlighting
 syntax on
 colorscheme molokai
-
