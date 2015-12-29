@@ -3,3 +3,6 @@ zsh debian zsh
 vim debian vim
 cmake arch cmake
 zsh arch zsh
+i3 arch i3
+i3status arch i3
+dmenu arch dmenu-manjaro

@@ -179,6 +179,7 @@ Plugin 'tomasr/molokai'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-scripts/Conque-GDB'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -191,3 +192,5 @@ let g:nerdtree_tabs_open_on_console_startup=1
 syntax on
 colorscheme molokai
 
+" Solarized colorscheme config
+let g:solarized_termcolors=256

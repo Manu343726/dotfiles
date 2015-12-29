@@ -19,7 +19,7 @@ URxvt*saveLines:                      5000
 
 URxvt*font: xft:Inconsolata-dz for Powerline:size=10
 
-#include <digerati>
+#include <plastic-toys>
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:                  true

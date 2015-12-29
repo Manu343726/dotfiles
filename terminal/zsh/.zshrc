@@ -100,3 +100,6 @@ zle -N zle-line-init
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# added by travis gem
+[ -f /home/manu343726/.travis/travis.sh ] && source /home/manu343726/.travis/travis.sh
