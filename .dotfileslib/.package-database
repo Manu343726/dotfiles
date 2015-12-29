@@ -6,3 +6,6 @@ zsh arch zsh
 i3 arch i3
 i3status arch i3
 dmenu arch dmenu-manjaro
+zsh cygwin zsh
+vim cygwin vim
+cmake cygwin cmake

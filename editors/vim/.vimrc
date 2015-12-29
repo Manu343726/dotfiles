@@ -178,7 +178,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'vim-scripts/Conque-GDB'
 Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
