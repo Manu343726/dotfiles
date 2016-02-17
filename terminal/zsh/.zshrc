@@ -51,14 +51,14 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fbterm tmux)
+plugins=(git)
 
 # User configuration
 # Enable 256 colors
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 export PATH="$PATH:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,13 +68,8 @@ export EDITOR=vim
 source ${ZSH_FISH_COMPLETIONS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Load zsh-autosuggestions.
-source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/autosuggestions.zsh
-
-# Enable autosuggestions automatically.
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
+source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/dist/autosuggestions.zsh
+autosuggest_start
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -103,3 +98,17 @@ zle -N zle-line-init
 
 # added by travis gem
 [ -f /home/manu343726/.travis/travis.sh ] && source /home/manu343726/.travis/travis.sh
+
+## Base16 Shell color themes.
+#possible themes: 3024, apathy, ashes, atelierdune, atelierforest, atelierhearth,
+#atelierseaside, bespin, brewer, chalk, codeschool, colors, default, eighties, 
+#embers, flat, google, grayscale, greenscreen, harmonic16, isotope, londontube,
+#marrakesh, mocha, monokai, ocean, paraiso, pop (dark only), railscasts, shapesifter,
+#solarized, summerfruit, tomorrow, twilight
+
+theme="monokai"
+
+#Possible variants: dark and light
+shade="dark"
+BASE16_SHELL="$HOME/.config/base16-shell/base16-$theme.$shade.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
