@@ -6,12 +6,18 @@ BUNDLE="${DOTVIM}/bundle"
 # Create .vim folder if needed
 [ -d "$DOTVIM" ] && mkdir -p $DOTVIM
 
-# Install vim with python support
-dotfiles_install_package vim
+# Install neovim and vim (Just for the case)
+dotfiles_install_package neovim vim
 
 # Install config
 dotfiles_install_component .vim $HOME/.vim
 dotfiles_install_component .vimrc $HOME/.vimrc
+
+# Alias neovim config to vim config
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+ln -s $HOME/.vim ${XDG_CONFIG_HOME}/nvim
+ln -s $HOME/.vimrc ${XDG_CONFIG_HOME}/nvim/init.vim
+sudo pip install nvim
 
 # Install vim vundle
 dotfiles_install_remote_component GITHUB VundleVim/Vundle.vim ".vim/bundle/Vundle.vim"

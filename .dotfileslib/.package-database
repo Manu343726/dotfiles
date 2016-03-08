@@ -9,3 +9,4 @@ dmenu arch dmenu-manjaro
 zsh cygwin zsh
 vim cygwin vim
 cmake cygwin cmake
+neovim arch neovim

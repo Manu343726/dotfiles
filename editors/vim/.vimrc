@@ -177,18 +177,23 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/conque-GDB'
+Plugin 'vim-scripts/Conque-GDB'
+Plugin 'oplatek/Conque-Shell'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " NERDtree related config
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=0
+let g:NERDTreeWinSIze=10
 
 " Syntax highlighting
 syntax on
@@ -196,3 +201,20 @@ colorscheme molokai
 
 " Solarized colorscheme config
 let g:solarized_termcolors=256
+
+" NeoVim terminal settings
+if has('nvim')
+    :tnoremap <Esc> <C-\><C-n>
+    :tnoremap <A-h> <C-\><C-n><C-w>h
+    :tnoremap <A-j> <C-\><C-n><C-w>j
+    :tnoremap <A-k> <C-\><C-n><C-w>k
+    :tnoremap <A-l> <C-\><C-n><C-w>l
+    :nnoremap <A-h> <C-w>h
+    :nnoremap <A-j> <C-w>j
+    :nnoremap <A-k> <C-w>k
+    :nnoremap <A-l> <C-w>l
+endif
+
+noremap <C-h> :tabprevious
+noremap <C-l> :tabnext
+noremap <C-t> :tabnew

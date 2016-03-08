@@ -106,9 +106,11 @@ autosuggest_start
 #marrakesh, mocha, monokai, ocean, paraiso, pop (dark only), railscasts, shapesifter,
 #solarized, summerfruit, tomorrow, twilight
 
-theme="monokai"
+theme="3024"
 
 #Possible variants: dark and light
 shade="dark"
 BASE16_SHELL="$HOME/.config/base16-shell/base16-$theme.$shade.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+alias vim='nvim'
