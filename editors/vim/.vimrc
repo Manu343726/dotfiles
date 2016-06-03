@@ -186,6 +186,9 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'reedes/vim-pencil'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'majutsushi/tagbar'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -201,6 +204,7 @@ colorscheme molokai
 
 " Solarized colorscheme config
 let g:solarized_termcolors=256
+let g:markdown_fenced_languages = ['cpp', 'python', 'bash=sh']
 
 " NeoVim terminal settings
 if has('nvim')
@@ -215,6 +219,9 @@ if has('nvim')
     :nnoremap <A-l> <C-w>l
 endif
 
-noremap <C-h> :tabprevious
-noremap <C-l> :tabnext
-noremap <C-t> :tabnew
+augroup pencil
+    autocmd!
+    autocmd FileType mardown call pencil#init()
+    autocmd FileType text    call pencil#init()
+augroup END
+

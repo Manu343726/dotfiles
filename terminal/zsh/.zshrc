@@ -51,7 +51,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git vi-mode)
 
 # User configuration
 # Enable 256 colors
@@ -59,7 +59,7 @@ plugins=(git)
 export PATH="$PATH:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
-
+export EXPLORER="palemoon"
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR=vim
@@ -68,8 +68,7 @@ export EDITOR=vim
 source ${ZSH_FISH_COMPLETIONS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Load zsh-autosuggestions.
-source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/dist/autosuggestions.zsh
-autosuggest_start
+source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -114,3 +113,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-$theme.$shade.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 alias vim='nvim'
+
+export CONAN_REPO="$HOME/Documentos/conan"
+alias sconan='${CONAN_REPO}/launcher'
