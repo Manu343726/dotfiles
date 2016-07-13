@@ -189,6 +189,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'reedes/vim-pencil'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -225,3 +226,8 @@ augroup pencil
     autocmd FileType text    call pencil#init()
 augroup END
 
+" Doxygen settings
+let g:DoxygenToolkit_briefTag_pre="\\brief "
+let g:DoxygenToolkit_paramTag_pre="\\param "
+let g:DoxygenToolkit_templateParamTag_pre="\\tparam "
+let g:DoxygenToolkit_returnTag_pre="\\returns "
