@@ -192,6 +192,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'majutsushi/tagbar'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -211,3 +212,9 @@ set guifont=Inconsolata-dz\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 12
 set encoding=utf-8
 " required if using https://github.com/bling/vim-airline
 let g:airline_powerline_fonts=1
+"
+" Doxygen settings
+let g:DoxygenToolkit_briefTag_pre="\\brief "
+let g:DoxygenToolkit_paramTag_pre="\\param "
+let g:DoxygenToolkit_templateParamTag_pre="\\tparam "
+let g:DoxygenToolkit_returnTag_pre="\\returns "
