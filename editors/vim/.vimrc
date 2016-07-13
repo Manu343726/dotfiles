@@ -186,6 +186,9 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'majutsushi/tagbar'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -200,3 +203,9 @@ colorscheme molokai
 
 " Solarized colorscheme config
 let g:solarized_termcolors=256
+"
+" Doxygen settings
+let g:DoxygenToolkit_briefTag_pre="\\brief "
+let g:DoxygenToolkit_paramTag_pre="\\param "
+let g:DoxygenToolkit_templateParamTag_pre="\\tparam "
+let g:DoxygenToolkit_returnTag_pre="\\returns "
