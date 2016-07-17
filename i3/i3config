@@ -27,7 +27,7 @@ font pango:Cantarell 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec terminal -e /bin/zsh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -256,6 +256,8 @@ bar {
 		urgent_workspace #2ECC71 #900000 #FFFFFF
 	}
 }
+exec --no-startup-id $HOME/.dotfiles/install.sh --target terminal/appearance
+exec --no-startup-id $HOME/.screenlayout/two-screens.sh
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

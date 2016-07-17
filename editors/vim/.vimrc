@@ -231,3 +231,11 @@ let g:DoxygenToolkit_briefTag_pre="\\brief "
 let g:DoxygenToolkit_paramTag_pre="\\param "
 let g:DoxygenToolkit_templateParamTag_pre="\\tparam "
 let g:DoxygenToolkit_returnTag_pre="\\returns "
+
+noremap <C-h> :tabprevious
+noremap <C-l> :tabnext
+noremap <C-t> :tabnew
+
+" Red-highlight lines exceding 80 column
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+match OverLength /\%>80v.\+/
