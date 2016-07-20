@@ -185,7 +185,13 @@ Plugin 'oplatek/Conque-Shell'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
+Plugin 'tpope/vim-fugitive'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'majutsushi/tagbar'
+Plugin 'junegunn/vim-easy-align'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -200,3 +206,8 @@ colorscheme molokai
 
 " Solarized colorscheme config
 let g:solarized_termcolors=256
+
+set guifont=Inconsolata-dz\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 12
+set encoding=utf-8
+" required if using https://github.com/bling/vim-airline
+let g:airline_powerline_fonts=1

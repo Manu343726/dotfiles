@@ -17,7 +17,7 @@ URxvt*background:                     black
 URxvt*foreground:                     white
 URxvt*saveLines:                      5000
 
-URxvt*font: xft:Inconsolata-dz for Powerline:size=10
+URxvt*font: xft:Inconsolata-dz for Powerline Plus Nerd File Types:size=10
 
 #include <plastic-toys>
 

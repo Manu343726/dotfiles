@@ -68,13 +68,7 @@ export EDITOR=vim
 source ${ZSH_FISH_COMPLETIONS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Load zsh-autosuggestions.
-source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/autosuggestions.zsh
-
-# Enable autosuggestions automatically.
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
+source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
