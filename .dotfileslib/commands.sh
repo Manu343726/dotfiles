@@ -28,7 +28,7 @@ dotfiles_install_remote_component()
     local component=$3
     local url=$2
 
-    if [ "$#" -gt 4 ]; then
+    if [ "$#" -gt 3 ]; then
         dest=$4
     else
         dest=""
