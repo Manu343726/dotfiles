@@ -9,3 +9,5 @@ dmenu arch dmenu-manjaro
 zsh cygwin zsh
 vim cygwin vim
 cmake cygwin cmake
+ruby arch ruby
+tmux arch tmux

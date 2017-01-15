@@ -51,7 +51,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fbterm tmux)
+plugins=(git fbterm tmux zsh-autosuggestions)
 
 # User configuration
 # Enable 256 colors
@@ -66,15 +66,6 @@ export EDITOR=vim
 
 # Load zsh-syntax-highlighting.
 source ${ZSH_FISH_COMPLETIONS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Load zsh-autosuggestions.
-source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/autosuggestions.zsh
-
-# Enable autosuggestions automatically.
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
