@@ -13,3 +13,4 @@ cmake debian cmake
 python2 debian python
 python2-dev debian python-dev
 libpython2 debian libpython2.7
+ag debian silversearcher-ag

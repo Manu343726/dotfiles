@@ -28,13 +28,15 @@ dotfiles_install_remote_component()
     local component=$3
     local url=$2
 
-    if [ "$#" -gt 4 ]; then
+    if [ "$#" -gt 3 ]; then
         dest=$4
     else
         dest=""
     fi
 
     path="${DOTFILES_CURRENT_SOURCE_DIR}/${component}"
+
+    print_note COMPONENT "component '$component' destination is '$dest'"
 
     if [ -n "$dest" ]; then
         print_info COMPONENT "Installing remote component '$component' from '${url}' to $dest"

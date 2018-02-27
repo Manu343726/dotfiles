@@ -97,3 +97,17 @@ source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # added by travis gem
 [ -f /home/manu343726/.travis/travis.sh ] && source /home/manu343726/.travis/travis.sh
+
+# Python 3.5
+alias python3.5=$HOME/Python-3.5.4/bin/python3.5
+alias pip3.5=$HOME/Python-3.5.4/bin/pip3.5
+
+# keyboard shortcut to change between keyboard layouts (us, spanish)
+setxkbmap -option grp:alt_shit_toggle us,es
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+
+alias 2048='$HOME/Documentos/2048-cli/2048'
