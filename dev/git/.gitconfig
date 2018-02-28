@@ -1,0 +1,24 @@
+[user]
+	name = Manu343726
+	email = Manu343726@gmail.com
+[push]
+	default = simple
+[alias]
+	pl = log --decorate --oneline --graph
+	s = status
+	dtool = difftool
+	l = log --oneline --decorate
+	c = commit
+	p = push
+	pf = push
+	b = branch
+	co = checkout
+	pnb = ! echo Pushing new branch $(git rev-parse --abbrev-ref HEAD) to origin && git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+	submit = !bash $HOME/submit.sh
+[diff]
+	difftool = vimdiff
+	tool = vimdiff
+[difftool]
+	prompt = false
+[github]
+	user = Manu343726
