@@ -14,6 +14,7 @@
 	b = branch
 	co = checkout
 	pnb = ! echo Pushing new branch $(git rev-parse --abbrev-ref HEAD) to origin && git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+	submit = !bash $HOME/submit.sh
 [diff]
 	difftool = vimdiff
 	tool = vimdiff

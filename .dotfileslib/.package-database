@@ -11,3 +11,6 @@ vim cygwin vim
 cmake cygwin cmake
 ruby arch ruby
 tmux arch tmux
+ruby debian ruby
+tmux debian tmux
+cmake debian cmake
