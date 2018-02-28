@@ -59,6 +59,7 @@ dotfiles_install()
     dotfiles_install_target terminal/zsh
     dotfiles_install_target terminal/appearance
     dotfiles_install_target editors/vim
+    dotfiles_install_target dev/git
 }
 
 dotfiles_install && echo Done!
