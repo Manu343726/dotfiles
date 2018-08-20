@@ -12,6 +12,7 @@ fi
 if [ ! -d "$OPTPARSE_LIB" -o "$(ls -A $OPTPARSE_LIB 2> /dev/null)" == "" ]; then
     current=$(pwd)
     cd $DOTFILES_SRC_DIR
+    git checkout by
     git submodule update --init
     cd $current
 fi
