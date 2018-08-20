@@ -111,3 +111,9 @@ bindkey "[D" backward-word
 bindkey "[C" forward-word
 
 alias 2048='$HOME/Documentos/2048-cli/2048'
+
+# Default proto and Qt versions for wmip-whale dev:
+export CMAKE_PREFIX_PATH="$HOME/Qt/5.9.2/gcc_64:/opt/protobuf-3.5.1:/opt/grpc"
+
+# Add jfrog cli to path
+export PATH=$PATH:$HOME/jfrog

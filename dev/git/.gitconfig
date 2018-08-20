@@ -1,6 +1,6 @@
 [user]
-	name = Manu343726
-	email = Manu343726@gmail.com
+	name = Manuel Sanchez
+	email = manuel@by.com.es
 [push]
 	default = simple
 [alias]
@@ -15,6 +15,7 @@
 	co = checkout
 	pnb = ! echo Pushing new branch $(git rev-parse --abbrev-ref HEAD) to origin && git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 	submit = !bash $HOME/submit.sh
+	cp = cherry-pick
 [diff]
 	difftool = vimdiff
 	tool = vimdiff

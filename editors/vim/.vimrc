@@ -201,6 +201,7 @@ Plugin 'simeji/winresizer'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'peterhoeg/vim-qml'
+Plugin 'amix/vim-2048'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
