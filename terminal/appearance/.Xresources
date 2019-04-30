@@ -19,7 +19,7 @@ URxvt*saveLines:                      5000
 
 URxvt*font: xft:Inconsolata-dz for Powerline Plus Nerd File Types:size=10
 
-#include <plastic-toys>
+#include </home/manuel/.dotfiles/terminal/appearance/xcolors/themes/plastic-toys>
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:                  true

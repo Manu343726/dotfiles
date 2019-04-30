@@ -56,6 +56,7 @@ plugins=(git fbterm tmux)
 # User configuration
 # Enable 256 colors
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+[[ "$TERM" == "screen" ]] && export TERM=screen-256color
 export PATH="$PATH:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -69,6 +70,8 @@ source ${ZSH_FISH_COMPLETIONS}/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 
 # Load zsh-autosuggestions.
 source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -99,8 +102,8 @@ source ${ZSH_FISH_COMPLETIONS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /home/manu343726/.travis/travis.sh ] && source /home/manu343726/.travis/travis.sh
 
 # Python 3.5
-alias python3.5=$HOME/Python-3.5.4/bin/python3.5
-alias pip3.5=$HOME/Python-3.5.4/bin/pip3.5
+#alias python3.5=$HOME/Python-3.5.4/bin/python3.5
+#alias pip3.5=$HOME/Python-3.5.4/bin/pip3.5
 
 # keyboard shortcut to change between keyboard layouts (us, spanish)
 setxkbmap -option grp:alt_shit_toggle us,es
@@ -114,6 +117,12 @@ alias 2048='$HOME/Documentos/2048-cli/2048'
 
 # Default proto and Qt versions for wmip-whale dev:
 export CMAKE_PREFIX_PATH="$HOME/Qt/5.9.2/gcc_64:/opt/protobuf-3.5.1:/opt/grpc"
+export PATH=$PATH:$HOME/.cargo/bin
 
 # Add jfrog cli to path
 export PATH=$PATH:$HOME/jfrog
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+alias cat=bat
+alias ls=exa

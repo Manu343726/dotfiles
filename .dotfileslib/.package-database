@@ -16,3 +16,7 @@ libpython2 debian libpython2.7
 ag debian silversearcher-ag
 ruby debian ruby
 tmux debian tmux
+gcc debian gcc
+i3 debian i3
+dmenu debian dmenu
+i3status debian i3status

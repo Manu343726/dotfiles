@@ -23,3 +23,5 @@
 	prompt = false
 [github]
 	user = Manu343726
+[hooks "clangformat"]
+	command = clang-format-4.0

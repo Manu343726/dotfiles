@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/media/manuel-sanchez/ssd/wmip/wmip-whale/app/media/imx6videoengine'
 let g:netrw_dirhist_2='/home/manuel-sanchez/Documentos/ctti/include/ctti'
+let g:netrw_dirhist_3='scp://root@192.168.250.11/'

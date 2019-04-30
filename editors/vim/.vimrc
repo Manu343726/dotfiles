@@ -112,6 +112,14 @@ set t_vb=
 " Enable use of the mouse for all modes
 set mouse=a
 
+" Fix split dragging inside tmux/byobu
+" See https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=1
@@ -183,15 +191,11 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/Conque-GDB'
-Plugin 'oplatek/Conque-Shell'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'majutsushi/tagbar'
 Plugin 'junegunn/vim-easy-align'
@@ -202,13 +206,35 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'peterhoeg/vim-qml'
 Plugin 'amix/vim-2048'
+Plugin 'kana/vim-operator-user'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'reedes/vim-pencil'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'martinda/Jenkinsfile-vim-syntax'
+Plugin 'paroxayte/vwm.vim'
+Plugin 'lvht/tagbar-markdown'
+Plugin 'mzlogin/vim-markdown-toc'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'osyo-manga/vim-over'
+Plugin 'itchyny/lightline.vim'
+Plugin 'terryma/vim-multiple-cursors'
+
+" Pathogen does not support install hooks so the install() call will not
+" be run automatically. Run it again on first start.
+" See
+" https://github.com/iamcco/markdown-preview.nvim/issues/43#issuecomment-478414688
+Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " NERDtree related config
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=0
 
 " Syntax highlighting
 syntax on
@@ -238,4 +264,130 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args> , '--word-regex', <bang>0)
 " ConqueGDB settings
 
 " Use buildroot ARM gdb
-let g:ConqueGdb_GdbExe = '/home/manuel-sanchez/wmip/buildroot-octopus/output/host/usr/bin/arm-linux-gdb'
+"let g:ConqueGdb_GdbExe = '/home/manuel/wmip/octopus-vserver-v3/output/host/usr/bin/arm-linux-gdb'
+
+" clang-format config:
+let g:clang_format#command = 'clang-format-6.0'
+let g:clang_format#auto_format_on_insert_leave = 1 " format when leaving insert mode
+let g:clang_format#auto_formatexpr = 1             " use clang-format for vim block formatting
+let g:clang_format#enable_fallback_style = 0       " Disable fallback style, does nothing if no config file is found
+autocmd FileType c,cpp,protobuf ClangFormatAutoEnable
+
+" markdown preview config:
+let vim_markdown_preview_github=1
+let vim_markdown_preview_toggle=1
+
+" vim-markdown config:
+let g:markdown_enable_spell_checking = 0
+let g:vim_markdown_conceal = 3
+let g:vim_markdown_folding_disabled = 1
+
+" markdown-preview.nvim config:
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 1
+
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
+
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be use in markdown file
+" default: 0
+let g:mkdp_command_for_global = 0
+
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 0
+
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = ''
+
+" specify browser to open preview page
+" default: ''
+let g:mkdp_browser = ''
+
+" set to 1, echo preview page url in command line when open preview page
+" default is 0
+let g:mkdp_echo_preview_url = 0
+
+function! g:Open_browser(url)
+    echo "Opening Markdown preview Google Chrome Window for " . a:url . " ..."
+    silent exec "! google-chrome-stable --app=" . a:url . " &"
+endfunction
+
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = 'g:Open_browser'
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'relative',
+    \ 'hide_yaml_meta': 1
+    \ }
+
+" use a custom markdown style must be absolute path
+let g:mkdp_markdown_css = ''
+
+" use a custom highlight style must absolute path
+let g:mkdp_highlight_css = ''
+
+" use a custom port to start server or random for empty
+let g:mkdp_port = ''
+
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+
+" vim-markdown-toc config:
+let g:vmt_cycle_list_item_markers = 1
+
+" vim-pencil config
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
+" incsearch config
+
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+map / <Plug>(incsearch-fuzzy-/)
+map ? <Plug>(incsearch-fuzzy-?)
+map g/ <Plug>(incsearch-fuzzy-stay)
+
