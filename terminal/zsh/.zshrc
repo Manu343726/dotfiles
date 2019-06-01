@@ -7,7 +7,7 @@ export ZSH_FISH_COMPLETIONS=${DOTFILES}/terminal/zsh/fish-completions
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bira"
+ZSH_THEME="flazz"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +51,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fbterm tmux)
+plugins=(git fbterm tmux timer)
 
 # User configuration
 # Enable 256 colors
@@ -65,6 +65,10 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR=vim
 
+if [ -z "$TMUX" ]
+then
+    tmux attach -t TMUX || tmux new -s TMUX
+fi
 # Load zsh-syntax-highlighting.
 source ${ZSH_FISH_COMPLETIONS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

@@ -8,18 +8,8 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 Xcursor.theme: Chameleon-Pearl-Regular-0.5
 Xcursor.size:  0
-URxvt.depth: 32
-URxvt.background: [62]#000000
-URxvt*scrollBar:                      false
-URxvt*mouseWheelScrollPage:           false
-URxvt*cursorBlink:                    true
-URxvt*background:                     black
-URxvt*foreground:                     white
-URxvt*saveLines:                      5000
 
-URxvt*font: xft:Inconsolata-dz for Powerline Plus Nerd File Types:size=10
-
-#include </home/manuel/.dotfiles/terminal/appearance/xcolors/themes/plastic-toys>
+Xft*font: xft:Inconsolata Nerd Font Complete Mono
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:                  true

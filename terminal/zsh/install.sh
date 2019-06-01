@@ -1,8 +1,12 @@
 #!/bin/bash
 
 dotfiles_install_package zsh
+
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true
+
+# Use patched flazz theme
+dotfiles_install_component flazz.zsh-theme $HOME/.oh-my-zsh/themes/flazz.zsh-theme
 
 # Install fishshell completions
 dotfiles_install_remote_component GITHUB tarruda/zsh-autosuggestions fish-completions/zsh-autosuggestions

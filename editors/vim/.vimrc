@@ -184,6 +184,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
 
+Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
@@ -217,11 +218,15 @@ Plugin 'martinda/Jenkinsfile-vim-syntax'
 Plugin 'paroxayte/vwm.vim'
 Plugin 'lvht/tagbar-markdown'
 Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'haya14busa/incsearch-fuzzy.vim'
+"Plugin 'haya14busa/incsearch.vim'
+"Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'osyo-manga/vim-over'
-Plugin 'itchyny/lightline.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'chrisbra/Colorizer'
 
 " Pathogen does not support install hooks so the install() call will not
 " be run automatically. Run it again on first start.
@@ -247,6 +252,8 @@ set guifont=Inconsolata-dz\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 12
 set encoding=utf-8
 " required if using https://github.com/bling/vim-airline
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='solarized'
 "
 " Doxygen settings
 let g:DoxygenToolkit_briefTag_pre="\\brief "
@@ -258,8 +265,24 @@ let g:DoxygenToolkit_returnTag_pre="\\returns "
 set rtp+=~/.fzf " add fzf repo to vim runtime path
 
 " Override Ag command to ignore filenames but only show files which
-" content matches. See https://github.com/junegunn/fzf.vim/issues/346
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args> , '--word-regex', <bang>0)
+" content matches. See https://github.com/junegunn/fzf.vim/issues/346.
+" Also show file preview
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" Buffers command with preview window
+command! -bang -nargs=? -complete=dir Buffers
+  \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" Change ctags command to include tags for qualified C++ members
+let g:fzf_tags_command = 'ctags --c++-kinds=+p --fields=+iaS --extra=+q -R --exclude=build'
 
 " ConqueGDB settings
 
@@ -378,16 +401,70 @@ augroup END
 
 " incsearch config
 
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+"set hlsearch
+"let g:incsearch#auto_nohlsearch = 1
+"map n  <Plug>(incsearch-nohl-n)
+"map N  <Plug>(incsearch-nohl-N)
+"map *  <Plug>(incsearch-nohl-*)
+"map #  <Plug>(incsearch-nohl-#)
+"map g* <Plug>(incsearch-nohl-g*)
+"map g# <Plug>(incsearch-nohl-g#)
+"
+"map / <Plug>(incsearch-fuzzy-/)
+"map ? <Plug>(incsearch-fuzzy-?)
+"map g/ <Plug>(incsearch-fuzzy-stay)
 
-map / <Plug>(incsearch-fuzzy-/)
-map ? <Plug>(incsearch-fuzzy-?)
-map g/ <Plug>(incsearch-fuzzy-stay)
+" vim-indent-guides config:
+let g:indent_guides_guide_size = 4
+let g:indent_guides_color_change_percent = 1
+let g:indent_guides_enable_on_vim_startup = 1
 
+" Add vim 8.1 integrated debugger plugin
+packadd termdebug
+
+" tmuxline config:
+let g:tmuxline_powerline_separators = 1
+
+function! SetTmuxlineColorInsert(mode)
+    " Insert mode: blue
+    if a:mode == "i"
+        Tmuxline airline_insert
+
+    " Replace mode: red
+    elseif a:mode == "r"
+        Tmuxline airline
+
+    endif
+endfunction
+
+function! SetTmuxlineColorVisual()
+    set updatetime=0
+
+    " Visual mode: orange
+    Tmuxline airline_visual
+endfunction
+
+function! ResetTmuxlineColor()
+    set updatetime=4000
+    Tmuxline airline
+endfunction
+
+vnoremap <silent> <expr> <SID>SetTmuxlineColorVisual SetTmuxlineColorVisual()
+nnoremap <silent> <script> v v<SID>SetTmuxlineColorVisual
+nnoremap <silent> <script> V V<SID>SetTmuxlineColorVisual
+nnoremap <silent> <script> <C-v> <C-v><SID>SetTmuxlineColorVisual
+
+augroup TmuxlineColorSwap
+    autocmd!
+    autocmd InsertEnter * call SetTmuxlineColorInsert(v:insertmode)
+    autocmd InsertLeave * call ResetTmuxlineColor()
+    autocmd CursorHold * call ResetTmuxlineColor()
+    autocmd VimLeave * call ResetTmuxlineColor()
+augroup END
+
+" vim-bookmarks config:
+let g:bookmark_highlight_lines = 1
+highlight BookmarkSign ctermbg=NONE
+let g:bookmark_prefer_fzf = 1
+let g:bookmark_fzf_preview = 1
+"let g:bookmark_fzf_preview_layout = ['down']

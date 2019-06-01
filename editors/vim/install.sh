@@ -19,6 +19,10 @@ dotfiles_install_remote_component GITHUB VundleVim/Vundle.vim ".vim/bundle/Vundl
 # Install vim plugins
 vim +PluginInstall +qall
 
+# Use patched fzf.vim preview script to make previews
+# in vim-bookmarks work
+dotfiles_install_component fzf.vim-preview.sh $BUNDLE/fzf.vim/bin/preview.sh
+
 # Build YouCompleteMe
 if [[ -z $(find "${BUNDLE}/YouCompleteMe/third_party/ycmd" -name "libclang.*") ]]; then
     dotfiles_install_package cmake
